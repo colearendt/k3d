@@ -90,6 +90,8 @@ func NewCmdNodeCreate() *cobra.Command {
 
 	cmd.Flags().StringArray("k3s-arg", nil, "Additional args passed to k3d command")
 
+	cmd.Flags().StringVarP(&createNodeOpts.Platform, "platform", "", "", "Platform selector for node creation")
+
 	// done
 	return cmd
 }

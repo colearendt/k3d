@@ -33,6 +33,7 @@ import (
 )
 
 // JSONSchema describes the schema used to validate config files
+//
 //go:embed schema.json
 var JSONSchema string
 

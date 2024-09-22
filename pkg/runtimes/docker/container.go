@@ -51,7 +51,7 @@ func createContainer(ctx context.Context, dockerNode *NodeInDocker, name string)
 	// create container
 	var resp container.CreateResponse
 	for {
-		resp, err = docker.ContainerCreate(ctx, &dockerNode.ContainerConfig, &dockerNode.HostConfig, &dockerNode.NetworkingConfig, nil, name)
+		resp, err = docker.ContainerCreate(ctx, &dockerNode.ContainerConfig, &dockerNode.HostConfig, &dockerNode.NetworkingConfig, &dockerNode.Platform, name)
 		if err != nil {
 			if client.IsErrNotFound(err) {
 				if err := pullImage(ctx, docker, dockerNode.ContainerConfig.Image); err != nil {

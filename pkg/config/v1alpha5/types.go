@@ -36,6 +36,7 @@ import (
 const ApiVersion = "k3d.io/v1alpha5"
 
 // JSONSchema describes the schema used to validate config files
+//
 //go:embed schema.json
 var JSONSchema string
 
