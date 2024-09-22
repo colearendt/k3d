@@ -38,6 +38,7 @@ import (
 	runtimeErr "github.com/k3d-io/k3d/v5/pkg/runtimes/errors"
 	k3d "github.com/k3d-io/k3d/v5/pkg/types"
 	"github.com/k3d-io/k3d/v5/pkg/types/fixes"
+	ocispec "github.com/opencontainers/image-spec/specs-go/v1"
 	"inet.af/netaddr"
 
 	dockercliopts "github.com/docker/cli/opts"
@@ -174,10 +175,19 @@ func TranslateNodeToContainer(node *k3d.Node) (*NodeInDocker, error) {
 		}
 	}
 
+	/* Platform */
+	var platform ocispec.Platform
+	if node.Platform != "" {
+		splitPlatform := strings.Split(node.Platform, "/")
+		platform.OS = splitPlatform[0]
+		platform.Architecture = splitPlatform[1]
+	}
+
 	return &NodeInDocker{
 		ContainerConfig:  containerConfig,
 		HostConfig:       hostConfig,
 		NetworkingConfig: networkingConfig,
+		Platform:         platform,
 	}, nil
 }
 

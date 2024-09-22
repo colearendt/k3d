@@ -26,3 +26,5 @@ site/
 
 # Pipenv
 Pipfile*
+
+k3d

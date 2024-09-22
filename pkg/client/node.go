@@ -650,6 +650,10 @@ func NodeCreate(ctx context.Context, runtime runtimes.Runtime, node *k3d.Node, c
 		}
 	}
 
+	if createNodeOpts.Platform != "" {
+		node.Platform = createNodeOpts.Platform
+	}
+
 	/*
 	 * CREATION
 	 */
